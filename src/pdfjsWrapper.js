@@ -193,9 +193,11 @@ export default function (PDFJS) {
       if (pdfRender !== null) {
         if (canceling) return;
         canceling = true;
-        pdfRender.cancel().catch(function (err) {
-          emitEvent("error", err);
-        });
+        try {
+          pdfRender.cancel();
+        } catch (e) {
+          emitEvent("error", e);
+        }
         return;
       }
 
