@@ -1,5 +1,5 @@
 import { PDFLinkService } from "pdfjs-dist/es5/web/pdf_viewer";
-import CMapReaderFactory from "./CMapReaderFactory";
+import "./cmaps_mapping";
 
 var pendingOperation = Promise.resolve();
 
@@ -29,7 +29,8 @@ export default function (PDFJS) {
       source.withCredentials = options.withCredentials;
 
     Object.assign(source, {
-      CMapReaderFactory,
+      cMapUrl: "fonts/",
+      cMapPacked: true,
     });
 
     var loadingTask = PDFJS.getDocument(source);
